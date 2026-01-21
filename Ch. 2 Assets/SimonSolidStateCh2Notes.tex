@@ -1,38 +1,11 @@
+%\def\standalonechapter{} % comment or uncomment for 
+
+\ifdefined\standalonechapter
 \documentclass{article}
-
-\usepackage[english]{babel}
-\usepackage{outlines}
-\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{amssymb}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{fancyhdr}
-
-% ==== Custom Macros ==== %
-\newcommand{\boldvec}[1]{\vec{\mathbf{#1}}} % For a vector quantity
-\newcommand{\boldvecdot}[1]{\dot{\vec{\mathbf{#1}}}} % For the first derivative of a vector quantity
-\newcommand{\boldvecddot}[1]{\ddot{\vec{\mathbf{#1}}}} % For the second derivative of a vector quantity
-\newcommand{\defn}[0]{\textbf{Definition: }}
-% ======================= %
-
-\title{Chapter 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}
-\author{Alex Hardie}
-
-
+\input{preamble}
 \begin{document}
-
-
-\vspace*{\fill}       % push down to vertical center
-\begin{center}
-\stepcounter{section}
-    \section*{Chapter 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}
-    \addcontentsline{toc}{section}{Title Page}
-\end{center}
-\vspace*{\fill}       % push up to vertical center
-
-
-\newpage
+\chaptertitle{Chapter 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}
+\fi
 
 \pagestyle{fancy}
 \fancyhead[L]{Ch. 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}   % Chapter name
@@ -279,4 +252,8 @@ Kittel [INSERT] \\
 YOUTUBE VIDEO \\
 MATH/PHYS STACK EXCHANGE \\
 
+% ===== Chapter content ends here =====
+
+\ifdefined\standalonechapter
 \end{document}
+\fi
