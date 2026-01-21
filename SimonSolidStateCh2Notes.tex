@@ -1,0 +1,282 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage{outlines}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{fancyhdr}
+
+% ==== Custom Macros ==== %
+\newcommand{\boldvec}[1]{\vec{\mathbf{#1}}} % For a vector quantity
+\newcommand{\boldvecdot}[1]{\dot{\vec{\mathbf{#1}}}} % For the first derivative of a vector quantity
+\newcommand{\boldvecddot}[1]{\ddot{\vec{\mathbf{#1}}}} % For the second derivative of a vector quantity
+\newcommand{\defn}[0]{\textbf{Definition: }}
+% ======================= %
+
+\title{Chapter 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}
+\author{Alex Hardie}
+
+
+\begin{document}
+
+
+\vspace*{\fill}       % push down to vertical center
+\begin{center}
+\stepcounter{section}
+    \section*{Chapter 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}
+    \addcontentsline{toc}{section}{Title Page}
+\end{center}
+\vspace*{\fill}       % push up to vertical center
+
+
+\newpage
+
+\pagestyle{fancy}
+\fancyhead[L]{Ch. 2: Specific Heat of Solids: Boltzmann, Einstein, and Debye}   % Chapter name
+\fancyhead[R]{\rightmark}  % Section name %
+
+\subsection*{Intro}
+\begin{outline}[enumerate]
+    \1 \textbf{A note from Alex:} The content here is likely to be challenging. Please let me know if you would like help working through any part of it. I have included the definitions, theorems, results, and derivations needed to communicate the core ideas of Chapter 2 assuming no background in statistical mechanics, but I do not spend much time motivating \textit{why} each idea is important. These notes are intended to supplement the textbook, not replace it, and are best used alongside the assigned readings and lecture content. Additional readings that may help have also been included for you to reference. Best of luck!
+
+    \1 \defn{Definition} The \textit{classical heat capacity for an ideal gas} is defined as
+    $$C_v = \frac{3}{2} k_B$$
+        \2 $C_v :=$ heat capacity per atom, of an ideal gas.
+        \2 ${k_B} :=$ Boltzmann's Constant
+        \2 The textbook author does not discriminate between $C_P$ and $C_V$ because they are nearly the same in solids. $C_P-C_V=VT\frac{\alpha^2}{\beta_T}$ where $\beta_T$ is isothermal compressibility, $\alpha$ is the coefficient of thermal expansion.
+    \1 \defn{Definition} The \textit{Law of Dulong-Petit} for the heat capacity of solids says
+    $$C=3 k_B \ \text{per atom} \  = 3R$$
+        \2 Frequently very close to experimental results at room temperature; $C$ drops rapidly below some temperature dependent on the material.
+        \2 Confirmed by Boltzmann's work in statistical mechanics; challenged by experimental results at low temperatures which was confirmed by Einstein.
+\end{outline}
+
+\newpage
+\setcounter{section}{2}
+\subsection{Einstein's Calculations}
+\begin{outline}[enumerate]
+    \1 \textbf{Result from Modern Physics} The one-dimensional eigenstate of a harmonic oscillator is given by 
+    \begin{equation}
+        E_n = \hbar \omega (n+\frac{1}{2}) \hfill
+    \end{equation}
+        \2 $\omega :=$ Frequency of harmonic oscillator
+        \2 $\hbar = \frac{h}{2 \pi}:=$ Reduced Planck's Constant (read h-bar)
+    \1 \defn The \textit{Boltzmann factor} for a state of energy $E_n$ is
+        \[
+        e^{-\beta E_n}
+        \]
+    \1 \defn The \textit{partition function} is the sum of the Boltzmann factors over all energy levels (microstates) of the system. It is given by 
+    $$Z=\sum_{n \geq 0}e^{-\beta E_n}$$
+        \2 $\beta = \frac{1}{k_BT} :=$ Thermodynamic beta. A result from statistical mechanics. 
+        \2 $E_n :=$ Energy of the system in the $n^{\text{th}}$ energy level.
+
+    \1 \defn A \textit{microstate} is a particular arrangement of items in a system. The probability of the system being in the energy level $n$ is dependent on energy through the equation:
+        $$\mathcal{P}(E_n)= \frac{1}{Z}e^{-\beta E_n}$$
+            
+        \2 For example, a \textit{microstate} of a system of two independent, distinguishable coins would be H-T. Another microstate is T-H. Another microstate is H-H. The final microstate is T-T. 
+    \1 \defn A \textit{macrostate} of a system is a class of microstates. 
+        \2 For instance, in the coin example we have three macrostates: two heads, two tails, and one heads and one tails.
+     \1 \defn The \textit{partition function  for a harmonic oscillator}, $Z_{1D}$, is given by
+\[
+\begin{aligned}
+    Z_{1D}
+    &= \sum_{n \geq 0}^{\infty} e^{-\beta \hbar \omega (n+\frac12)} \\
+    &= e^{-\beta \hbar \omega/2}
+       \sum_{n \geq 0}^{\infty} \left(e^{-\beta \hbar \omega}\right)^n \quad \text{by prop. summation}\\
+    &\Rightarrow \frac{e^{-\beta \hbar \omega/2}}{1 - e^{-\beta \hbar \omega}}
+    \quad \text{(geometric series)} \\
+    &\Rightarrow \frac{1}{2\sinh(\beta \hbar \omega/2)}
+    \quad \text{(definition of } \sinh).
+\end{aligned}
+\]
+    \1 \textbf{Important Statistical Mechanics Result:} An important result from statistical mechanics (that you should work through!) is that
+    $$-\frac{1}{Z}\frac{\partial Z}{\partial \beta}=\langle E\rangle$$
+    The proof is as follows:
+    \begin{align*}
+            \frac{\partial Z}{\partial \beta } &= \frac{\partial}{\partial \beta }\sum_{n\geq 0} e^{-\beta E_n}\quad \text{by def'n} \ Z, \text{then apply partial der.} \\
+            \frac{\partial Z}{\partial \beta }&= \sum_{n\geq 0} \frac{\partial}{\partial \beta } e^{-\beta E_n}\quad \text{by prop. summation}\\
+            \frac{\partial Z}{\partial \beta } &= \sum_{n\geq 0} -E_ne^{-\beta E_n} \quad \text{by calculus}\\
+            -\frac{1}{Z}\frac{\partial Z}{\partial \beta } &= \sum_{n\geq 0} -E_n \frac{e^{-\beta E_n}}{Z} \quad \text{mult. by} \ \frac{1}{Z} \\
+            &= \sum_{n\geq 0}E_n \mathcal{P} (E_n) \quad \text{by def'n prob. of microstate} \\
+            &= \langle E \rangle = \bar{E} \quad \text{by def'n average}
+        \end{align*}
+        \2 Note that each $E_n$ are the energies for each state $n$, thus the probability for something to be at any energy is $\mathcal{P}(E_n)$.
+     
+     \1 \textbf{Major Result}\footnote{I highly encourage you to work through this on your own. The proof uses our definitions of the partition function in one dimension, the ``Important Statistical Mechanics Result,'' the definition of $\coth$ in terms of $\sinh$ and $\cosh$, the exponential definitions of $\sinh$ and $\cosh$, and a clever choice for the argument.}\textbf{:}
+     The average (or expected) energy in a one dimensional system of quantum harmonic oscillators is 
+     $$\langle E \rangle = -\frac{1}{Z_{1D}} \frac{\partial Z_{1D}}{\partial \beta} = \frac{\hbar \omega}{2} \coth \left(\frac{\beta \hbar \omega}{2} \right) = \hbar \omega \left( n_B(\beta \hbar \omega) + \frac{1}{2} \right)$$
+        \2 $n_B(x) = \frac{1}{e^x-1} :=$ The Bose occupation factor.
+        \2 \textbf{Interpretation: } When expanded, the average energy separates into two contributions. The term independent of $\beta$ is the \emph{zero-point energy}, which exists even at zero temperature. The second term depends on temperature and represents energy due to thermal excitation of higher oscillator levels.
+    \1 \textbf{Definition: } Another way to look at \textit{heat capacity} is to think of it mathematically. Ask: ``How might we represent it using partial derivatives?'' Fundamentally, heat capacity represents a change in the average energy of the system for a corresponding, infinitesimal change in temperature. So it is sufficient to say
+    $$C= \frac{\partial \langle E \rangle}{\partial T}$$
+    
+    \1 \textbf{Result:}\footnote{This falls out purely by our definition of $\langle E \rangle$ and a bit of calculus.} The \textit{heat capacity for a single quantum harmonic oscillator} is given by 
+    $$C = \frac{\partial \langle E \rangle }{\partial T} = k_B(\beta \hbar \omega)^{2} \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega}-1)^2}$$
+    \1 \textbf{Result:}\footnote{I also recommend giving this one a shot.} The \textit{partition function for a 3-D system}, $Z_{3D}$, is given by the relationship
+    $$Z_{3D} = (Z_{1D})^3$$
+    \1 \textbf{Result:}\footnote{And this} Another consequence of this is that 
+    $$ \langle E_{3D} \rangle = 3 \langle E_{1D} \rangle$$
+    \1 \textbf{Result:} \footnote{This too!} We yield that the \textit{heat capacity for a 3D system of quantum harmonic oscillators} is given by 
+    $$C=3k_B(\beta \hbar \omega)^2 \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega} -1)^2}$$
+    \1 As we interpret this, we find that at high temperatures, the Einstein model recovers Dulong-Petit, but is more accurate at lower temperatures.
+        \2 There are a few notable exceptions, since for large values of $\omega= \sqrt{\frac{\kappa}{m}}$, the Einstein model is less accurate. 
+\end{outline}
+
+
+\newpage
+\subsection{Debye's Calculations}
+\begin{outline}[enumerate]
+    \1 Einstein's model for heat capacity, while it does account for quantum phenomena, often undershoots experimental results. Peter Debye corrected this, when he adapted the Einstein model to plot a $T^3$ dependence at low temperatures. 
+        \2 Magnetic material has a different term as well as $T^3$.
+    \1 \textbf{Cool/Important Notion:} Oscillation of atoms in a solid can be treated as sound moving through it. Since sound is a wave, it can be \textit{quantized} in the same way we quantize light! These quantized particles are called \textit{phonons}---sound as a quasiparticle!
+        \2 The minor differences between sound and light is that sound travels much slower than light and that sound has three modes for each wavevector \textbf{k} whereas light has two polarizations. This is true in solids, whereas sound only contains its longitudinal mode.
+\end{outline}
+
+\subsubsection{Periodic (Born-von Karman) Boundary Conditions}
+
+\begin{outline}[enumerate]
+    \1 \defn A \textit{wavevector}, $\boldvec{k}$, is a vector that encodes the magnitude (the wavenumber, which is inversely proportional to wavelength) and direction (perpendicular to the wavefront, which is the series of all points sharing the same phase) of wave propagation.
+    \1 \textbf{Definition:} A \textit{periodic boundary condition for a 1D system} fulfills the following criteria for any wave\footnote{You should be familiar with the reason why waves take the form of a complex exponential. If not, take some time to do some conceptual work! This will pay off bigly later on in your physics careers :-)} $e^{ikr}$:
+        \2 $r=r+L$ where $L$ is the 1D length of our sample.
+        \2 $k = \frac{2 \pi n}{L}$ with $n \in \mathbb{Z}.$
+            \3 \textit{Please} be careful with notation. $k$ is one dimensional, which is critical for integration. $\boldvec{k}$ is of dimension at least two. If the dimension of $\boldvec{k}=n$, then it can be broken into 1D components $k_1, k_2, \dots, k_n$.
+        \2 $\sum_{\boldvec{k}} \rightarrow \frac{L}{2 \pi}\int_{-\infty}^{\infty} \mathrm{d}k$
+            \3 We are able to do this because the spacing between allowed points in $k$-space (which is the the Fourier transform of real space) is $2 \pi / L$, and the integral $\int \mathrm{d}k$ can be replaced by a sum over $k$ points times the spacing between the points. 
+    \1 \textbf{Important Concept: } Systems that are periodic can best be represented through geometric interpretations. For instance: what might a 1D periodic boundary look like? A circle! What about a 2D periodic boundary? A torus (doughnut)! For 3D, it is not possible to visualize, but it is the 4D equivalent of a torus, a hypertorus. 
+        \2 This comes up in topology very regularly! This relates to the quotient topology and brings us to algebraic topology. This is the math that yields the doughnut/coffee cup equivalence.
+        \2 For a stupid analogy: 1D periodic boundaries are Pac-Man on a line, and Pac-Man is going around a circle. 2D periodic boundaries are regular Pac-Man, and Pac-Man is going around the surface of a torus. 3D periodic boundaries are trickier, but imagine a Pac-Man cube where if he``exited'' the bottom south-west corner, he would come out, upside down on the top north-east corner. Don't try to visualize that... 
+    \1 Since $\boldvec{k}$ is a vector, we can decompose it into its components such that
+    $$\boldvec{k} = \frac{2 \pi}{L}(n_1,n_2,n_3)$$
+    \1 By our definition, we then see that for a 3D system, the sum of all wave vectors is
+    $$\sum_{\boldvec{k}} \rightarrow \frac{L^3}{(2 \pi)^3} \int \mathrm{\textbf{d}}k $$
+        \2 Remember for these types of integrals it is necessary to decompose d$\boldvec{k}$.
+\end{outline}
+
+\subsubsection{Debye's Calculation Following Planck}
+\begin{outline}[enumerate]
+
+    \1 \defn The \textit{Debye Frequency}, $\omega_d$, of a 3D Debye system is maximum frequency for phonons in a 3D solid, and is defined as 
+    $$\omega_d^3 = 6 \pi^2 n v^3$$
+    
+    \1 \defn The \textit{Density of States} describes the number of allowed modes or states per unit energy range. For a 3D Debye system, the density of states is
+    $$g( \omega) = L^3 \left[ \frac{12\pi \omega^2}{(2\pi)^3 v^3}\right]=N\left[ \frac{12 \pi \omega^2}{(2 \pi)^3 n v^3}\right] = N \frac{9 \omega^2}{\omega_d^3}$$
+        \2 Also, the total number of allowed oscillation modes between $\omega$ and $\omega$ + d$\omega$ is $g(\omega)\mathrm{d}\omega.$
+
+
+    
+    \1 \textbf{Major Derivation:} What follows are the assumptions and full derivation of the average energy of the system in the Debye model, which quantizes waves traveling through solids.
+        \2 First, allow oscillation modes of a solid to be waves with frequencies $\omega (\boldvec{k}) = v \left \| \boldvec{k} \right \|$, where $v$ is the sound velocity.
+        \2 From a previous result that $\langle E_{3D} \rangle = 3 \langle E_{1D} \rangle$, our integration, and our work in part (a), we can find that 
+        \begin{align*}
+            \langle E_{3D} \rangle &= 3 \sum_{\boldvec{k}}\hbar \omega (\boldvec{k}) \left( n_B(\beta \hbar \omega(\boldvec{k})) + \frac{1}{2} \right) \\
+            &= 3  \frac{L^3}{(2 \pi)^3} \int \mathrm{d} \boldvec{k} \ \hbar \omega (\boldvec{k}) \left( n_B(\beta \hbar \omega(\boldvec{k})) + \frac{1}{2} \right)
+        \end{align*}
+        \2 Then, assume spherical symmetry and convert the 3D integral to 1D such that
+        $$\int \mathrm{\textbf{d}}\boldvec{k} \rightarrow 4 \pi \int _0 ^{\infty} k^2  \mathrm{d}k$$
+            \3 This is because the angular integrals of the spherical coordinate integration evaluate to $4\pi$ since there is no dependence on angle. 
+            \3 Notice, we are saying that the sphere is of radius $k$, which gives us a distance from which we can find that $k=\omega / v$ since $\omega$ is a frequency. This gets us $dk = d\omega/v$.
+        \2 Combine (b), (c), and (c.ii) to find that
+        $$\langle E_{3D} \rangle = 3 \frac{4 \pi L^3}{(2 \pi)^3}\int _0 ^{\infty} \omega^2 \mathrm{d}\omega (\hbar \omega) \left( \frac{1}{v^3} \right) \left( n_B (\beta \hbar \omega) + \frac{1}{2}\right)$$
+        \2 Notice that we have the density of states formula here! So we finally yield that
+        $$\langle E_{3D} \rangle = \int _0 ^{\infty} \mathrm{d}\omega \ g(\omega)(\hbar \omega) \left( n_B (\beta \hbar \omega) + \frac{1}{2}\right) = 9N \int_{0}^{\omega_d} \frac{\mathrm{d}\omega}{\omega_d^{3}}\, \omega^{2}\, (\hbar\omega)\left(\frac{1}{e^{\beta\hbar\omega}-1} + \frac{1}{2}\right)$$
+            \3 Physically, this tells us that we count how many modes there are per frequency (given by $g(\omega)$), then multiply by the expected energy per mode, and finally we integrate over all frequencies.
+    \1 \defn The \textit{Debye Temperature} is the temperature at which all phonon modes are excited. It is represented as $T_{Debye},$ or more commonly $T_d$.
+    \1 \textbf{Major Derivation:} Now, we will derive the \textit{heat capacity for a 3D Debye system}.
+        \2 Starting with (3.e)'s final result, we are concerned with finding $\frac{\partial \langle E \rangle}{\partial T}$. Because I want to keep my sanity, I am going to reduce this first. Notice we have a temperature-independent. To be specific, we yield
+        \[
+        \langle E \rangle
+        = \frac{9N\hbar}{\omega_d^{3}}
+        \int_{0}^{\infty}
+        \frac{\omega^{3}\,\mathrm{d}\omega}{e^{\beta\hbar\omega}-1}
+        \;+\;
+        \text{temperature-independent constant}.
+        \]
+        \2 Then, we integrate this (using the Zeta function!) to get
+        \[
+        \langle E \rangle
+        = 9N \frac{(k_B T)^4}{(\hbar \omega_d)^3}\,\frac{\pi^4}{15}
+        \;+\;
+        \text{$T$-independent constant}.
+        \]
+        \2 Finally, we take the partial derivative with respect to T, finding
+        \[
+        C = \frac{\partial \langle E \rangle}{\partial T}
+        = N k_B \frac{(k_B T)^3}{(\hbar \omega_d)^3}\,\frac{12\pi^4}{5}
+        \sim T^3 
+        \]
+            \3 Sometimes, the Debye frequency is replaced by a temperature with the relationship $k_B T_{Debye} = \hbar \omega_d$, which yields
+            \[
+            C = Nk_B \left( \frac{T}{T_{Debye}} \right)^3\frac{12 \pi^4}{5}
+            \] 
+\end{outline}
+
+\subsubsection{Debye's ``Interpolation''}
+\begin{outline}[enumerate]
+    \1 Debye's model, like Einstein's is not perfect. Try identify to a few positives and negatives by looking at the result for heat capacity before continuing.
+        \2 At high temperatures, the Debye model is still proportional to $T^3$. We know that it should level to the classical $3 k_B N$. 
+        \2 Can be used with an arbitrarily large number of $\boldvec{k}$, which implies that there are more modes than atoms in systems, which is not physically possible.
+    \1 These issues were addressed by adding a $\omega_{cutoff}$ which is the frequency that restricts the system to having only $3N$ total phonon modes chosen by Debye on a guess). This is represented mathematically by
+    \[
+    3N = \int_0^{\omega_{cutoff}}\mathrm{d}\omega \ g(\omega)
+    \]
+    \1 A direct result of choosing $\omega_{cutoff}$ in this way is that
+    \begin{align*}
+    \langle E \rangle &= \int_0^{\omega_{cutoff}} \mathrm{d}\omega \ g(\omega) \hbar \omega \,n_B(\beta \hbar \omega) \\
+    &= k_B T \int _0 ^{\omega_{cutoff}}\mathrm{d} \omega \ g(\omega) \quad \text{by} \  n_B(\beta \hbar \omega) = \frac{1}{e^{\beta \hbar \omega}-1} \rightarrow \frac{k_B T}{\hbar \omega} \ \text{at high T}\\
+    &= 3k_BTN \ \text{at high T}
+    \end{align*}
+    \1 For completeness, we now determine the cutoff frequency.
+        \2 A three-dimensional solid has $3N$ vibrational degrees of freedom, so the
+        density of states must satisfy
+        \[
+        3N = \int_{0}^{\omega_{\text{cutoff}}} g(\omega)\,\mathrm{d}\omega.
+        \]
+        \2 Using the Debye density of states,
+        \[
+        g(\omega) = \frac{9N}{\omega_d^{3}}\,\omega^{2},
+        \]
+        we find
+        \[
+        3N
+        = 9N \int_{0}^{\omega_{\text{cutoff}}}
+        \frac{\omega^{2}}{\omega_d^{3}}\,\mathrm{d}\omega
+        = 3N\,\frac{\omega_{\text{cutoff}}^{3}}{\omega_d^{3}}.
+        \]
+        \2 It follows immediately that
+        \[
+        \omega_{\text{cutoff}} = \omega_d.
+        \]
+        \2 Therefore, the correct cutoff frequency is exactly the Debye frequency.
+\end{outline}
+
+\subsubsection{Shortcomings of Debye Theory}
+\begin{outline}[enumerate]
+    \1 The cutoff is essentially a guess that the maximum oscillatory modes should be 3N in 3D.
+    \1 The assumption that $\omega = v k$ for very large values of $k$ only holds for high frequency and short wavelength. At high enough frequency, this breaks.
+    \1 Very accurate experimentally, less exact at intermediate temps
+    \1 Metals have a term that is proportional to $T$, so for metals $C=\gamma T+ \alpha T^3$. For low $T$, the linear term dominates, so the Debye model is less accurate as $T$ gets smaller in metals.
+\end{outline}
+
+\newpage
+
+\section*{Key Concepts and Equations from Chapter 2}
+
+\subsection*{2.1} 
+
+\subsection*{2.2} 
+\subsubsection*{2.2.1}
+\subsubsection*{2.2.2}
+\subsubsection*{2.2.3}
+\subsubsection*{2.2.1}
+
+\newpage
+
+\section*{Suggested Further Readings for Clarification} 
+Ashcroft and Mermin [INSERT] \\
+Kittel [INSERT] \\
+YOUTUBE VIDEO \\
+MATH/PHYS STACK EXCHANGE \\
+
+\end{document}
