@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{fancyhdr}
+\usepackage{textcomp}
+
 
 % ==== Custom Macros ====
 \newcommand{\boldvec}[1]{\vec{\mathbf{#1}}}
@@ -18,6 +20,9 @@
     % Reset section counters for new chapter
     \setcounter{section}{0}
     \setcounter{subsection}{0}
+
+    % Add Contnets line
+    \addcontentsline{toc}{section}{#1}
 
     % Clear header marks so old sections don't bleed through
     \markboth{#1}{}
@@ -33,5 +38,3 @@
     \clearpage
 }
 
-
-% ==== Setting Counters ====
