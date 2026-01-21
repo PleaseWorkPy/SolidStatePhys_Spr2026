@@ -10,3 +10,5 @@ I am working on taking notes on textbook, "The Oxford Solid State Basics" by Ste
 **Please do not use this as your primary method of learning.** The notes I take are meant to serve as a companion to your own reading and supplement the (awesome!) in-class lectures.
 
 If you find an error, unclear explanation, or typo, feel free to open an issue or let me know. All files are WIP until May 2026.
+
+➡️ **[Download the current notes (PDF)](SolidStateNotesSpr2026.pdf)**
